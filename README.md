@@ -92,7 +92,6 @@ It has since evolved into a fully fledged general purpose object-oriented progra
 Based on the TIOBE index, Python is currently the most popular programming language in the world.
 Not only that, Python has become the *de facto lingua franca* of data science, machine learning, and artificial intelligence.
 
-developer/user communities.
 However, Python has performance and typing limitations for large-scale, latency-sensitive systems. Cython addresses many of these issues by introducing static typing into Python's rich ecosystem of libraries and communities.
 
 ## Why Rust?
