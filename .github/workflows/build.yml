@@ -6,7 +6,7 @@ permissions: # Principle of least privilege
 
 on:
   push:
-    branches: [master, nightly, develop]
+    branches: [master, nightly, develop, test-macos]
   pull_request:
     branches: ['*']
 
@@ -116,8 +116,8 @@ jobs:
         run: |
           uv run --no-sync pytest --ignore=tests/performance_tests -n logical --dist=loadgroup
 
-      - name: Upload wheel artifact
-        uses: ./.github/actions/upload-artifact-wheel
+      # - name: Upload wheel artifact
+      #   uses: ./.github/actions/upload-artifact-wheel
 
   build-linux-arm:
     strategy:
@@ -205,8 +205,8 @@ jobs:
         run: |
           uv run --no-sync pytest --ignore=tests/performance_tests
 
-      - name: Upload wheel artifact
-        uses: ./.github/actions/upload-artifact-wheel
+      # - name: Upload wheel artifact
+      #   uses: ./.github/actions/upload-artifact-wheel
 
   build-macos:
     strategy:
@@ -262,8 +262,8 @@ jobs:
         run: |
           uv run --no-sync pytest --ignore=tests/performance_tests
 
-      - name: Upload wheel artifact
-        uses: ./.github/actions/upload-artifact-wheel
+      # - name: Upload wheel artifact
+      #   uses: ./.github/actions/upload-artifact-wheel
 
   build-windows:
     strategy:
@@ -324,8 +324,8 @@ jobs:
         run: |
           uv run --no-sync python -m pytest --ignore=tests/performance_tests
 
-      - name: Upload wheel artifact
-        uses: ./.github/actions/upload-artifact-wheel
+      # - name: Upload wheel artifact
+      #   uses: ./.github/actions/upload-artifact-wheel
 
   publish-wheels-develop:
     name: publish-wheels-develop

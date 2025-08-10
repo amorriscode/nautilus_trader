@@ -241,8 +241,10 @@ def _build_extensions() -> list[Extension]:
         # Suppress warnings produced by Cython boilerplate
         extra_compile_args.append("-Wno-unreachable-code")
         if BUILD_MODE == "release":
-            extra_compile_args.append("-O2")
+            extra_compile_args.append("-O3")  # Maximum optimization
             extra_compile_args.append("-pipe")
+            extra_compile_args.append("-flto")  # Enable Link Time Optimization
+            extra_link_args.append("-flto")  # Enable LTO for linking
 
     if IS_WINDOWS:
         # Standard Windows system libraries required when linking Cython extensions.
@@ -447,7 +449,7 @@ def _strip_unneeded_symbols() -> None:
             if IS_LINUX:
                 strip_cmd = ["strip", "--strip-unneeded", so]
             elif IS_MACOS:
-                strip_cmd = ["strip", "-x", so]
+                strip_cmd = ["strip", "-x", "-S", so]  # Strip all symbols and debug info
             else:
                 raise RuntimeError(f"Cannot strip symbols for platform {platform.system()}")
             subprocess.run(
